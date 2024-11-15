@@ -3,13 +3,13 @@ using UnityEngine;
 public class MonstrControl : MonoBehaviour
 {
     Vector2 Speed;
-    GameObject hero;
+    GameObject ball;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //Initialiserar vektorn Speed (default är 0 i x-led och 0  i y-led )
        Speed = new Vector2(0, 0);
-       hero = GameObject.Find("hero");
+       ball = GameObject.Find("ball");
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class MonstrControl : MonoBehaviour
         transform.Translate(Speed * Time.deltaTime);
         KeyboardControl();  
 
-        Debug.Log("Avstånd till : "  + Vector2.Distance(transform.position, hero.transform.position));
+        Debug.Log("Avstånd till : "  + Vector2.Distance(transform.position, ball.transform.position));
     }
 
 

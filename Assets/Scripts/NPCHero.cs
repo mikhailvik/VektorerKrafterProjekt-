@@ -2,67 +2,66 @@ using UnityEngine;
 
 public class NPCHero : MonoBehaviour
 {
-   GameObject[] heros;
+   GameObject[] balls;
     float Speed = 2; 
-
-    //Variabel ska peka på det moln som fågeln ska gå till härnäst. 
-    //0 betyder första molnet i arrayen, 1 betyder andra molnet i arrayen
-     int HeroIndex = 0;
+     // Aktuellt bollindex
+     //Variabel ska peka på det boll som hero ska gå till härnäst. 
+    //0 betyder första boll i arrayen, 1 betyder andra ball i arrayen, osv
+        int currentBallIndex = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Alla moln är taggade som clouds. I detta fall läses båda molnen in till en array
+        //Alla ball är taggade som balls. I detta fall läses fem balls in till en array
         //av spelobjekt
-        heros = GameObject.FindGameObjectsWithTag("hero");
+        balls = GameObject.FindGameObjectsWithTag("ball");
+
+         //Kontrollera antalet bollar, de måste vara 5 och skriv length 5
+         if (balls.Length != 5)
+        {
+            Debug.LogError("Bollar måste vara 5!");
+        }
+        else
+        {
+            // Välj random boll
+            currentBallIndex = Random.Range(0, balls.Length);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        //OM Avståndet mellan fågeln och molnet är mindre än 0.5 ska vi uppdatera CloudIndex, dvs. i praktiken
-        //byta destionationen till det andra målnet
-        if(Vector2.Distance(transform.position, heros[HeroIndex].transform.position) < 0.5f)
-        {
-            
-            //OM cloudindex var 0 ska det nu bli 1
-            if(HeroIndex == 0)
-            {
-                HeroIndex = 1;
-            } 
+        //OM Avståndet mellan hero och balls är mindre än 0.5 ska vi uppdatera BallIndex, dvs. i praktiken
+        //byta destionationen till det andra boll
 
-            //OM cloudindex var 1 ska det nu bli 0
-            else
-            {
-                HeroIndex = 0;
-            }
+        // Om hero når bollen, välj ny random boll
+        if (Vector2.Distance(transform.position, balls[currentBallIndex].transform.position) < 0.5f)
+        {
+          // Välj random index nästa boll
+            currentBallIndex = Random.Range(0, balls.Length);
         }
 
+        //Skapar en vektor som går från hero till boll genom att subrathera
+        //bolls positionsvektor med heros positionsvektor
 
-        //FINNS TVÅ ALTERNATIV ATT FÅ FÅGELN ATT RÖRA SEJ MOT MOLNET
-        //ALTERNATIV 1:
-        //-------------
-        //Skapar en vektor som går från fågeln till molnet genom att subrathera
-        //molnets positionsvektor med fågelns positionsvektor
-        Vector2 Direction = heros[HeroIndex].transform.position - transform.position;
+         // Flytta mot den aktuella bollen
+        Vector2 Direction = balls[currentBallIndex].transform.position - transform.position;
 
-        //Normaliserar Direction-vektorn (längden blir nu 1, men riktningen samma som tidigare)
+         //Normaliserar Direction-vektorn (längden blir nu 1, men riktningen samma som tidigare)
         Direction.Normalize();
 
-        //Skapar en ny vektor som definierar riktningen och hastigheten från blåa fågeln till
-        //molnet. Velocity-vektorn blir den normaliserade vektorn multiplicerat med en skalär
-        //för speed/hastighet
-        Vector2 Velocity = Direction * Speed;
+         // Beräkna rörelsehastigheten
+        //Skapar en ny vektor som definierar riktningen och hastigheten från hero till boll
+        //Velocity-vektorn blir den normaliserade vektorn multiplicerat med en skalär för speed/hastighet
+        Vector2 Velocity = Direction * Speed; 
 
-        //Till slut adderar vi Velocit vektorn med blåa fågenlns positionsvektor för varje frame för att få den
-        //att röra sej mot molnet. Vi multiplicerar med time.deltaTime för att skala ner hastigheten att motsvara
+        //Flytta hero
+        //Till slut adderar vi Velocit vektorn med heros positionsvektor för varje frame för att få den
+        //att röra sej mot boll. Vi multiplicerar med time.deltaTime för att skala ner hastigheten att motsvara
         //enhter per sekunder i stället för enheter per frame
-        transform.Translate(Velocity * Time.deltaTime);
 
-        //ALTERNATIV 2:
-        //-------------
-        //Åstadkommer samma som i alternativ 1 fast med 1 funktionsanrop
-        //transform.position = Vector2.MoveTowards(transform.position, cloud.transform.position, Speed * Time.deltaTime);
+        transform.Translate(Velocity * Time.deltaTime); 
+
     }
 }
