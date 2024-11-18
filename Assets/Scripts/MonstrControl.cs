@@ -9,7 +9,7 @@ public class MonstrControl : MonoBehaviour
     {
         //Initialiserar vektorn Speed (default är 0 i x-led och 0  i y-led )
        Speed = new Vector2(0, 0);
-       ball = GameObject.Find("ball");
+       ball = GameObject.FindGameObjectWithTag("ball");
     }
 
     // Update is called once per frame
@@ -18,7 +18,11 @@ public class MonstrControl : MonoBehaviour
         transform.Translate(Speed * Time.deltaTime);
         KeyboardControl();  
 
-        Debug.Log("Avstånd till : "  + Vector2.Distance(transform.position, ball.transform.position));
+
+      //Kontrollera om det är noll innan du använder bollen
+      
+            Debug.Log("Avstånd till ball: " + Vector2.Distance(transform.position, ball.transform.position));
+       
     }
 
 
