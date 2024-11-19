@@ -7,7 +7,7 @@ public class StartaOmVidKollision : MonoBehaviour
     void OnCollisionEnter(Collision kollision)
     {
         // Kontrollera om det krockade objektet har namnet "monstr"
-        if (kollision.gameObject.name == "monstr")
+        if (kollision.gameObject.name == "Monstr")
         {
             // Skriv ut ett meddelande i konsolen för att verifiera kollisionen
             Debug.Log("Kollision med monstr!");
