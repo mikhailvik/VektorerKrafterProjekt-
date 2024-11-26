@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class GravityObject : MonoBehaviour
 {
-    // Gravitationskonstanten (kan justeras i Inspector)
+    // Gravitationskonstanten 
     [SerializeField] private float gravitationsKonstant = 0.1f;
 
-    // Objektets massa (kan justeras i Inspector)
+    // Objektets massa 
     [SerializeField] private float _massa = 1f;
 
     // Lista över alla GravityObject-objekt i scenen
