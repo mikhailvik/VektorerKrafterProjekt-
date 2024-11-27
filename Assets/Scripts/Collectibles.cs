@@ -7,7 +7,7 @@ public class Collectibles : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // Kontrollera om det är spelaren som kolliderar
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Monstr"))
         {
             // Dölj eller förstör objektet
             Destroy(gameObject);
