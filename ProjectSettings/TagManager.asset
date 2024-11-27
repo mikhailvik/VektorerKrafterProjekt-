@@ -6,6 +6,7 @@ TagManager:
   tags:
   - hero
   - ball
+  - monstr
   layers:
   - Default
   - TransparentFX
