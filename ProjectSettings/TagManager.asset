@@ -7,6 +7,7 @@ TagManager:
   - hero
   - ball
   - monstr
+  - cookie
   layers:
   - Default
   - TransparentFX
