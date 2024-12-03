@@ -13,14 +13,14 @@ public class GravityObject : MonoBehaviour
     private static List<GravityObject> gravityObjects = new List<GravityObject>();
 
     // Rigidbody-komponent för att hantera rörelse
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D Rigidbody2D; // Viktoriia Mikhailova: I changed - big "R"
 
     void Start()
     {
         // Hämta Rigidbody2D-komponenten
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        Rigidbody2D = GetComponent<Rigidbody2D>();
 
-        if (rigidbody2D == null)
+        if (Rigidbody2D == null)
         {
             Debug.LogError("Rigidbody2D saknas på " + gameObject.name);
         }
@@ -72,7 +72,7 @@ public class GravityObject : MonoBehaviour
 
         // Applicera kraften på objektets Rigidbody
         Vector2 gravitationsKraft = riktning * kraft;
-        rigidbody2D.AddForce(gravitationsKraft);
+        Rigidbody2D.AddForce(gravitationsKraft);
     }
 
     // Publik egenskap för att justera massan i andra skript
