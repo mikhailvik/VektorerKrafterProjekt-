@@ -350,8 +350,8 @@ Transform:
   m_GameObject: {fileID: 285259493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.06, y: 1.8, z: 0}
-  m_LocalScale: {x: 0.1114292, y: 0.112017386, z: 0.40154663}
+  m_LocalPosition: {x: -3.91, y: 2.32, z: 0}
+  m_LocalScale: {x: 0.079582736, y: 0.06956279, z: 0.40154663}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -432,7 +432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravitationsKonstant: 0.1
-  _massa: 20
+  _massa: 1
+  initialVelocity: {x: 3.5, y: 0}
 --- !u!1 &493985931
 GameObject:
   m_ObjectHideFlags: 0
@@ -2358,8 +2359,8 @@ Transform:
   m_GameObject: {fileID: 1776248593}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.31, y: 1.87, z: 0}
-  m_LocalScale: {x: 0.21234527, y: 0.19922984, z: 0.76135}
+  m_LocalPosition: {x: 4.84, y: 2.4, z: 0}
+  m_LocalScale: {x: 0.14513569, y: 0.13908912, z: 0.76135}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2412,7 +2413,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -2439,8 +2440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bc4612e1ef9f64c97b81c988d88551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravitationsKonstant: 0.1
-  _massa: 40
+  gravitationsKonstant: 0.05
+  _massa: 1
+  initialVelocity: {x: 0, y: 0}
 --- !u!1 &1855125029
 GameObject:
   m_ObjectHideFlags: 0
