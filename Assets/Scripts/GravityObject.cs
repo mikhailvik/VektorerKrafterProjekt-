@@ -1,61 +1,38 @@
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class GravityObject : MonoBehaviour
-{
-    [SerializeField] private float gravitationsKonstant = 0.1f;
-    [SerializeField] private float _massa = 1f;
-    [SerializeField] private Vector2 initialVelocity = new Vector2(10f, 0f);
+ {
 
-    private static List<GravityObject> gravityObjects = new List<GravityObject>();
-    private Rigidbody2D Rigidbody2D;
+public float G;
 
-    void Start()
-    {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
+Rigidbody2D SaturnPhysics;
+Rigidbody2D PlutoPhysics;
+GameObject Pluto;
 
-        
-        Rigidbody2D.linearVelocity = initialVelocity;
-    }
+ void Start()
+ {
+    // saturn fysikmotor
+    SaturnPhysics = GetComponent<Rigidbody2D>();
+    Pluto = GameObject.Find("Pluto");
 
-    void OnEnable()
-    {
-        gravityObjects.Add(this);
-    }
+    //Pluto fysikmotor
+    PlutoPhysics = Pluto.GetComponent<Rigidbody2D>(); 
+ }
 
-    void OnDisable()
-    {
-        gravityObjects.Remove(this);
-    }
+ void Update()
+ {
+    float r = Vector2.Distance(transform.position, Pluto.transform.position);
 
-    void FixedUpdate()
-    {
-        foreach (var annatObjekt in gravityObjects)
-        {
-            if (annatObjekt != this)
-            {
-                ApplyGravity(annatObjekt);
-            }
-        }
-    }
+    float F = G*((PlutoPhysics.mass * SaturnPhysics.mass)/(r*r));
 
-    private void ApplyGravity(GravityObject annatObjekt)
-    {
-        Vector2 direction = annatObjekt.transform.position - transform.position;
-        float distance = direction.magnitude;
+   
+    Vector2 Direction = transform.position - Pluto.transform.position ;
+    Direction.Normalize();
 
-        if (distance == 0) return;
+    Vector2 Force = Direction * F;
 
-        direction.Normalize();
-        float forceMagnitude = gravitationsKonstant * (_massa * annatObjekt.massa) / (distance * distance);
-        Vector2 gravityForce = direction * forceMagnitude;
 
-        Rigidbody2D.AddForce(gravityForce);
-    }
-
-    public float massa
-    {
-        get { return _massa; }
-        set { _massa = value; }
-    }
-}
+    PlutoPhysics.AddForce(Force);
+ }
+ }
