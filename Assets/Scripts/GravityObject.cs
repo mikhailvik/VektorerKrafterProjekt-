@@ -10,7 +10,7 @@ public class GravityObject : MonoBehaviour
     [SerializeField] private float _massa = 1f;
 
     // Lista över alla GravityObject-objekt i scenen
-    private static List<GravityObject> gravityObjects = new List<GravityObject>();
+    public List<GravityObject> gravityObjects = new List<GravityObject>(); //Viktoriia Mikhailova bytat public List
 
     // Rigidbody-komponent för att hantera rörelse
     private Rigidbody2D Rigidbody2D; // Viktoriia Mikhailova: I changed - big "R"

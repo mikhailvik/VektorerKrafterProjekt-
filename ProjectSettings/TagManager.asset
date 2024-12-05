@@ -8,6 +8,7 @@ TagManager:
   - ball
   - monstr
   - cookie
+  - Sputnik
   layers:
   - Default
   - TransparentFX
